@@ -1,3 +1,5 @@
+use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId};
+
 pub const SEND_TOPIC_NAME: &str = "verification-approved";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
