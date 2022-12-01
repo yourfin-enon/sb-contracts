@@ -1,16 +1,16 @@
 use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId};
 
-pub const SEND_TOPIC_NAME: &str = "verification-approved";
+pub const SEND_TOPIC_NAME: &str = "verification-confirmed";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VerificationApprovedSbModel {
+pub struct VerificationConfirmedSbModel {
     #[prost(string, tag = "1")]
     pub trader_id: ::prost::alloc::string::String,
     #[prost(int32, tag = "2")]
     pub r#type: i32,
 }
 
-impl VerificationApprovedSbModel {
+impl VerificationConfirmedSbModel {
     fn as_bytes(&self) -> Result<Vec<u8>, prost::EncodeError> {
         let mut result = Vec::new();
         prost::Message::encode(self, &mut result)?;
@@ -22,13 +22,13 @@ impl VerificationApprovedSbModel {
     }
 }
 
-impl GetMySbModelTopicId for VerificationApprovedSbModel {
+impl GetMySbModelTopicId for VerificationConfirmedSbModel {
     fn get_topic_id() -> &'static str {
         SEND_TOPIC_NAME
     }
 }
 
-impl MySbMessageSerializer for VerificationApprovedSbModel {
+impl MySbMessageSerializer for VerificationConfirmedSbModel {
     fn serialize(
         &self,
         headers: Option<std::collections::HashMap<String, String>>,
