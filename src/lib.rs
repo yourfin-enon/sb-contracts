@@ -1,4 +1,4 @@
-#[cfg(feature="rustls")]
+#[cfg(feature="system-messages")]
 pub mod system_messages;
 
 #[cfg(test)]
