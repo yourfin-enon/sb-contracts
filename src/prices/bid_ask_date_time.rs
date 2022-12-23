@@ -16,21 +16,21 @@ impl BidAskDateTime {
         Self { value: millis, scale: 4, kind: 1 }
     }
     
-    pub fn _timestamp_sec(&self) -> i64 {
+    pub fn timestamp_sec(&self) -> i64 {
         match self.scale {
             3 => self.value,
             _ => panic!("Not supported scale")
         }        
     }
 
-    pub fn _timestamp_micros(&self) -> i64 {
+    pub fn timestamp_micros(&self) -> i64 {
         match self.scale {
             5 => self.value  / 10,
             _ => panic!("Not supported scale")
         }        
     }
 
-    pub fn _timestamp_millis(&self) -> i64 {
+    pub fn timestamp_millis(&self) -> i64 {
         match self.scale {
             4 => self.value,
             5 => self.value  / 10_000,
