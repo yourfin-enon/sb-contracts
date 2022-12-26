@@ -1,47 +1,75 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BidAskDateTime {
     /// the offset (in units of the selected scale) from 1970/01/01
-    #[prost(sint64, tag="1")]
+    #[prost(sint64, tag = "1")]
     pub value: i64,
     /// the scale of the timespan [default = DAYS]
-    #[prost(enumeration="date_time::TimeSpanScale", tag="2")]
+    #[prost(enumeration = "date_time::TimeSpanScale", tag = "2")]
     pub scale: i32,
     /// the kind of date/time being represented [default = UNSPECIFIED]
-    #[prost(enumeration="date_time::DateTimeKind", tag="3")]
+    #[prost(enumeration = "date_time::DateTimeKind", tag = "3")]
     pub kind: i32,
 }
 
 impl BidAskDateTime {
     pub fn from_millis(millis: i64) -> Self {
-        Self { value: millis, scale: 4, kind: 1 }
+        Self {
+            value: millis,
+            scale: 4,
+            kind: 1,
+        }
     }
-    
+
     pub fn timestamp_sec(&self) -> i64 {
-        match self.scale {
-            3 => self.value,
-            _ => panic!("Not supported scale")
-        }        
+        let scale = date_time::TimeSpanScale::try_from(self.scale)
+            .expect("Failed to parse scale to TimeSpanScale");
+
+        match scale {
+            date_time::TimeSpanScale::Seconds => self.value,
+            date_time::TimeSpanScale::Milliseconds => self.value / 1000,
+            _ => panic!("Not supported scale"),
+        }
     }
 
     pub fn timestamp_micros(&self) -> i64 {
-        match self.scale {
-            5 => self.value  / 10,
-            _ => panic!("Not supported scale")
-        }        
+        let scale = date_time::TimeSpanScale::try_from(self.scale)
+            .expect("Failed to parse scale to TimeSpanScale");
+
+        match scale {
+            date_time::TimeSpanScale::Ticks => self.value / 10,
+            _ => panic!("Not supported scale"),
+        }
     }
 
     pub fn timestamp_millis(&self) -> i64 {
-        match self.scale {
-            4 => self.value,
-            5 => self.value  / 10_000,
-            _ => panic!("Not supported scale")
-        }        
+        let scale = date_time::TimeSpanScale::try_from(self.scale)
+            .expect("Failed to parse scale to TimeSpanScale");
+
+        match scale {
+            date_time::TimeSpanScale::Seconds => self.value * 1000,
+            date_time::TimeSpanScale::Milliseconds => self.value,
+            date_time::TimeSpanScale::Ticks => self.value / 10_000,
+            _ => panic!("Not supported scale"),
+        }
     }
 }
 
 /// Nested message and enum types in `DateTime`.
 pub mod date_time {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    use num_enum::TryFromPrimitive;
+
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        TryFromPrimitive,
+        Ord,
+        ::prost::Enumeration,
+    )]
     #[repr(i32)]
     pub enum TimeSpanScale {
         Days = 0,
