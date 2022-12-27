@@ -27,6 +27,10 @@ impl BidAskDateTime {
         match scale {
             date_time::TimeSpanScale::Seconds => self.value,
             date_time::TimeSpanScale::Milliseconds => self.value / 1000,
+            date_time::TimeSpanScale::Ticks => self.value / 10_000_000,
+            date_time::TimeSpanScale::Minutes => self.value * 60,
+            date_time::TimeSpanScale::Hours => self.value * 3600,
+            date_time::TimeSpanScale::Days => self.value * 86400,
             _ => panic!("Not supported scale"),
         }
     }
@@ -37,6 +41,11 @@ impl BidAskDateTime {
 
         match scale {
             date_time::TimeSpanScale::Ticks => self.value / 10,
+            date_time::TimeSpanScale::Seconds => self.value * 1_000_00,
+            date_time::TimeSpanScale::Milliseconds => self.value * 1_000,
+            date_time::TimeSpanScale::Minutes => self.value * 60_000_000,
+            date_time::TimeSpanScale::Hours => self.value * 3_600_000_000,
+            date_time::TimeSpanScale::Days => self.value * 86_400_000_000,
             _ => panic!("Not supported scale"),
         }
     }
@@ -49,6 +58,9 @@ impl BidAskDateTime {
             date_time::TimeSpanScale::Seconds => self.value * 1000,
             date_time::TimeSpanScale::Milliseconds => self.value,
             date_time::TimeSpanScale::Ticks => self.value / 10_000,
+            date_time::TimeSpanScale::Minutes => self.value * 60_000,
+            date_time::TimeSpanScale::Hours => self.value * 3_600_000,
+            date_time::TimeSpanScale::Days => self.value * 86_400_000,
             _ => panic!("Not supported scale"),
         }
     }
