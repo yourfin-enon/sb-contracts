@@ -1,8 +1,9 @@
-use std::collections::HashMap;
-
-use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId, subscriber::MySbMessageDeserializer, SubscriberError};
-
 use super::bid_ask_date_time::BidAskDateTime;
+use my_service_bus_abstractions::{
+    publisher::MySbMessageSerializer, subscriber::MySbMessageDeserializer, GetMySbModelTopicId,
+    SubscriberError,
+};
+use std::collections::HashMap;
 
 pub const SEND_TOPIC_NAME: &str = "bidask";
 
