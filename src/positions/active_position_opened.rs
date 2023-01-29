@@ -22,7 +22,7 @@ pub struct ActivePositionOpenedSbEvent {
     pub activate_date: i64,
 
     #[prost(map = "string, double", tag = "5")]
-    pub activate_invest_amounts: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+    pub activate_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 }
 
 impl ActivePositionOpenedSbEvent {

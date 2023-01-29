@@ -11,12 +11,15 @@ pub const TOPIC_NAME: &str = "pending-position-opened-events";
 pub struct PendingPositionOpenedSbEvent {
     #[prost(string, tag = "1")]
     pub id: String,
+    
     #[prost(message, optional, tag = "2")]
     pub order: ::core::option::Option<OrderSbModel>,
+
     #[prost(int64, tag = "3")]
     pub open_date: i64,
+
     #[prost(map = "string, double", tag = "4")]
-    pub open_invest_amounts: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+    pub open_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 }
 
 impl PendingPositionOpenedSbEvent {
