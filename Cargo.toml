@@ -1,6 +1,6 @@
 [package]
 name = "sb-contracts"
-version = "0.2.8"
+version = "0.2.9"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -10,6 +10,7 @@ system-messages = []
 verifications = []
 prices = []
 balances = []
+positions = []
 
 [dependencies]
 my-service-bus-abstractions = { tag = "0.1.1", git = "https://github.com/MyJetTools/my-service-bus-abstractions.git" }
