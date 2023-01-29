@@ -5,5 +5,6 @@ pub mod verifications;
 pub mod prices;
 #[cfg(feature="balances")]
 pub mod balances;
+#[cfg(feature="positions")]
 pub mod positions;
 pub mod shared;
