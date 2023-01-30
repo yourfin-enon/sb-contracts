@@ -9,7 +9,7 @@ pub const TOPIC_NAME: &str = "order-updated-events";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrderUpdatedSbEvent {    
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag = "1")]
     pub order: ::core::option::Option<OrderSbModel>,
 }
 
