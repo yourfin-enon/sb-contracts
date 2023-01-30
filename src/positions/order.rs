@@ -5,12 +5,14 @@ pub struct OrderSbModel {
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
-    pub wallet_id: ::prost::alloc::string::String,
+    pub trader_id: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
-    pub instrument: ::prost::alloc::string::String,
+    pub wallet_id: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
+    pub instrument: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
     pub base_asset: ::prost::alloc::string::String,
-    #[prost(double, tag = "5")]
+    #[prost(double, tag = "6")]
     pub leverage: f64,
     #[prost(enumeration = "OrderSideSb", tag = "7")]
     pub side: i32,
