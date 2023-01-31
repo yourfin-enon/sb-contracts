@@ -4,6 +4,7 @@ use my_service_bus_abstractions::{
     SubscriberError,
 };
 use std::collections::HashMap;
+use crate::positions::order::OrderSbModel;
 
 pub const TOPIC_NAME: &str = "position-closed-events";
 
@@ -11,7 +12,7 @@ pub const TOPIC_NAME: &str = "position-closed-events";
 pub struct PositionClosedSbEvent {
     #[prost(string, tag = "1")]
     pub id: String,
-    
+
     #[prost(message, optional, tag = "2")]
     pub order: ::core::option::Option<OrderSbModel>,
 
