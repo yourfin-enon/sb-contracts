@@ -31,10 +31,7 @@ pub struct PositionClosedSbEvent {
     #[prost(map = "string, double", tag = "7")]
     pub close_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 
-    #[prost(map = "string, double", tag = "8")]
-    pub close_asset_pnls: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
-
-    #[prost(enumeration = "PositionCloseReasonSb", tag = "9")]
+    #[prost(enumeration = "PositionCloseReasonSb", tag = "8")]
     pub reason: i32,
 }
 
