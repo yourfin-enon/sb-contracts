@@ -11,26 +11,29 @@ pub const TOPIC_NAME: &str = "position-closed-events";
 pub struct PositionClosedSbEvent {
     #[prost(string, tag = "1")]
     pub id: String,
-
+    
     #[prost(message, optional, tag = "2")]
+    pub order: ::core::option::Option<OrderSbModel>,
+
+    #[prost(message, optional, tag = "3")]
     pub pnl: ::core::option::Option<NullableDoubleSb>,
     
-    #[prost(map = "string, double", tag = "3")]
+    #[prost(map = "string, double", tag = "4")]
     pub asset_pnls: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 
-    #[prost(int64, tag = "4")]
+    #[prost(int64, tag = "5")]
     pub close_date: i64,
 
-    #[prost(double, tag = "5")]
+    #[prost(double, tag = "6")]
     pub close_price: f64,
 
-    #[prost(map = "string, double", tag = "6")]
+    #[prost(map = "string, double", tag = "7")]
     pub close_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 
-    #[prost(map = "string, double", tag = "7")]
+    #[prost(map = "string, double", tag = "8")]
     pub close_asset_pnls: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 
-    #[prost(enumeration = "PositionCloseReasonSb", tag = "8")]
+    #[prost(enumeration = "PositionCloseReasonSb", tag = "9")]
     pub reason: i32,
 }
 
