@@ -5,10 +5,10 @@ use my_service_bus_abstractions::{
 use std::collections::HashMap;
 use super::order::OrderSbModel;
 
-pub const TOPIC_NAME: &str = "position-opened-events";
+pub const TOPIC_NAME: &str = "position-pending-events";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PositionOpenedSbEvent {
+pub struct PositionPendingSbEvent {
     #[prost(string, tag = "1")]
     pub id: String,
     
@@ -22,7 +22,7 @@ pub struct PositionOpenedSbEvent {
     pub open_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 }
 
-impl PositionOpenedSbEvent {
+impl PositionPendingSbEvent {
     pub fn as_bytes(&self) -> Result<Vec<u8>, prost::EncodeError> {
         let version: u8 = 0;
         let mut result = vec![version];
@@ -35,13 +35,13 @@ impl PositionOpenedSbEvent {
     }
 }
 
-impl GetMySbModelTopicId for PositionOpenedSbEvent {
+impl GetMySbModelTopicId for PositionPendingSbEvent {
     fn get_topic_id() -> &'static str {
         TOPIC_NAME
     }
 }
 
-impl MySbMessageSerializer for PositionOpenedSbEvent {
+impl MySbMessageSerializer for PositionPendingSbEvent {
     fn serialize(
         &self,
         headers: Option<std::collections::HashMap<String, String>>,
@@ -55,13 +55,13 @@ impl MySbMessageSerializer for PositionOpenedSbEvent {
     }
 }
 
-impl MySbMessageDeserializer for PositionOpenedSbEvent {
-    type Item = PositionOpenedSbEvent;
+impl MySbMessageDeserializer for PositionPendingSbEvent {
+    type Item = PositionPendingSbEvent;
     fn deserialize(
         src: &[u8],
         _headers: &Option<HashMap<String, String>>,
     ) -> Result<Self::Item, SubscriberError> {
-        let result = PositionOpenedSbEvent::from_bytes(src);
+        let result = PositionPendingSbEvent::from_bytes(src);
 
         match result {
             Ok(model) => return Ok(model),
