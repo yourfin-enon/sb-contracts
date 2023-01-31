@@ -4,7 +4,7 @@ use my_service_bus_abstractions::{
 };
 use std::collections::HashMap;
 
-pub const TOPIC_NAME: &str = "update-balances-commands";
+pub const TOPIC_NAME: &str = "wallet-balances-update-commands";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBalancesSbCommand {

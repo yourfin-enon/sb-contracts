@@ -5,7 +5,7 @@ use my_service_bus_abstractions::{
 use std::collections::HashMap;
 use super::order::OrderSbModel;
 
-pub const TOPIC_NAME: &str = "position-pending-events";
+pub const TOPIC_NAME: &str = "wallet-position-pending";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PositionPendingSbEvent {

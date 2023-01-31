@@ -5,7 +5,7 @@ use my_service_bus_abstractions::{
 };
 use std::collections::HashMap;
 
-pub const TOPIC_NAME: &str = "position-activated-events";
+pub const TOPIC_NAME: &str = "wallet-position-activated";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PositionActivedSbEvent {

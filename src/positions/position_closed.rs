@@ -6,7 +6,7 @@ use my_service_bus_abstractions::{
 use std::collections::HashMap;
 use crate::positions::order::OrderSbModel;
 
-pub const TOPIC_NAME: &str = "position-closed-events";
+pub const TOPIC_NAME: &str = "wallet-position-closed";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PositionClosedSbEvent {
