@@ -11,6 +11,8 @@ pub const TOPIC_NAME: &str = "wallet-order-updated";
 pub struct OrderUpdatedSbEvent {    
     #[prost(message, optional, tag = "1")]
     pub order: ::core::option::Option<OrderSbModel>,
+    #[prost(string, optional, tag = "2")]
+    pub position_id: String,
 }
 
 impl OrderUpdatedSbEvent {
