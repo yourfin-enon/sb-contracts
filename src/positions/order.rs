@@ -30,6 +30,8 @@ pub struct OrderSbModel {
     pub desire_price: ::core::option::Option<NullableDoubleSb>,
     #[prost(bool, tag = "14")]
     pub top_up_enabled: bool,
+    #[prost(double, tag = "15")]
+    pub top_up_percent: f64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
