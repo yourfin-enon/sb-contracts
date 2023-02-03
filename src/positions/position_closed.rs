@@ -33,6 +33,8 @@ pub struct PositionClosedSbEvent {
 
     #[prost(enumeration = "PositionCloseReasonSb", tag = "8")]
     pub reason: i32,
+    #[prost(int32, tag = "9")]
+    pub state: i32,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
