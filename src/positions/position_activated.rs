@@ -23,6 +23,12 @@ pub struct PositionActivedSbEvent {
 
     #[prost(map = "string, double", tag = "5")]
     pub activate_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+
+    #[prost(int64, tag = "6")]
+    pub open_date: i64,
+
+    #[prost(map = "string, double", tag = "7")]
+    pub open_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 }
 
 impl PositionActivedSbEvent {
