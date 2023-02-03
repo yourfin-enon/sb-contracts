@@ -32,8 +32,8 @@ pub struct OrderSbModel {
     pub top_up_enabled: bool,
     #[prost(double, tag = "15")]
     pub top_up_percent: f64,
-    #[prost(enumeration = "OrderTypeSb",, tag = "16")]
-    pub order_type: f64,
+    #[prost(enumeration = "OrderTypeSb", tag = "16")]
+    pub order_type: i32,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
