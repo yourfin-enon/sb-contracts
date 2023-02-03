@@ -32,6 +32,8 @@ pub struct OrderSbModel {
     pub top_up_enabled: bool,
     #[prost(double, tag = "15")]
     pub top_up_percent: f64,
+    #[prost(enumeration = "OrderTypeSb",, tag = "16")]
+    pub order_type: f64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -47,6 +49,13 @@ pub struct AutoCloseConfigSbModel {
 pub enum OrderSideSb {
     Buy = 0,
     Sell = 1,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OrderTypeSb {
+    Market = 0,
+    Limit = 1,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
