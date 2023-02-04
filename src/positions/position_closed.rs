@@ -1,4 +1,3 @@
-use crate::shared::NullableDoubleSb;
 use my_service_bus_abstractions::{
     publisher::MySbMessageSerializer, subscriber::MySbMessageDeserializer, GetMySbModelTopicId,
     SubscriberError,
@@ -17,7 +16,7 @@ pub struct PositionClosedSbEvent {
     pub order: ::core::option::Option<OrderSbModel>,
 
     #[prost(message, optional, tag = "3")]
-    pub pnl: ::core::option::Option<NullableDoubleSb>,
+    pub pnl: ::core::option::Option<f64>,
     
     #[prost(map = "string, double", tag = "4")]
     pub asset_pnls: ::std::collections::HashMap<::prost::alloc::string::String, f64>,

@@ -1,5 +1,3 @@
-use crate::shared::NullableDoubleSb;
-
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrderSbModel {
     #[prost(string, tag = "1")]
@@ -27,7 +25,7 @@ pub struct OrderSbModel {
     #[prost(map = "string, double", tag = "12")]
     pub invest_assets: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
     #[prost(message, optional, tag = "13")]
-    pub desire_price: ::core::option::Option<NullableDoubleSb>,
+    pub desire_price: ::core::option::Option<f64>,
     #[prost(bool, tag = "14")]
     pub top_up_enabled: bool,
     #[prost(double, tag = "15")]
