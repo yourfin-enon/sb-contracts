@@ -19,13 +19,13 @@ pub struct PositionActivedSbEvent {
     pub activate_price: f64,
 
     #[prost(int64, tag = "4")]
-    pub activate_date: i64,
+    pub activate_date_micros: i64,
 
     #[prost(map = "string, double", tag = "5")]
     pub activate_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 
     #[prost(int64, tag = "6")]
-    pub open_date: i64,
+    pub open_date_micros: i64,
 
     #[prost(map = "string, double", tag = "7")]
     pub open_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,

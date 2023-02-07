@@ -22,7 +22,7 @@ pub struct PositionClosedSbEvent {
     pub asset_pnls: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
 
     #[prost(int64, tag = "5")]
-    pub close_date: i64,
+    pub close_date_micros: i64,
 
     #[prost(double, tag = "6")]
     pub close_price: f64,

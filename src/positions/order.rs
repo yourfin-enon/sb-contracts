@@ -32,6 +32,8 @@ pub struct OrderSbModel {
     pub top_up_percent: f64,
     #[prost(enumeration = "OrderTypeSb", tag = "16")]
     pub order_type: i32,
+    #[prost(int64, tag = "17")]
+    pub create_date_micros: i64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]

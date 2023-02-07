@@ -16,7 +16,7 @@ pub struct PositionPendingSbEvent {
     pub order: ::core::option::Option<OrderSbModel>,
 
     #[prost(int64, tag = "3")]
-    pub open_date: i64,
+    pub open_date_micros: i64,
 
     #[prost(map = "string, double", tag = "4")]
     pub open_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
