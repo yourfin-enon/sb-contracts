@@ -13,9 +13,11 @@ pub struct UpdateBalancesSbCommand {
     #[prost(int64, tag = "2")]
     pub timestamp: i64,
     #[prost(string, tag = "3")]
-    pub operation_type: ::prost::alloc::string::String,
+    pub description: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
     pub updates: ::prost::alloc::vec::Vec<BalanceUpdateSbModel>,
+    #[prost(int32, tag = "5")]
+    pub operation_type: i32,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -32,6 +34,8 @@ pub struct BalanceUpdateSbModel {
     pub trader_id: ::prost::alloc::string::String,
     #[prost(double, tag = "6")]
     pub reserve_amount: f64,
+    #[prost(int32, tag = "7")]
+    pub update_reason: i32,
 }
 
 impl UpdateBalancesSbCommand {

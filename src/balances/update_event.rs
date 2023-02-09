@@ -13,9 +13,11 @@ pub struct BalancesUpdatedSbEvent {
     #[prost(int64, tag = "2")]
     pub timestamp: i64,
     #[prost(string, tag = "3")]
-    pub operation_type: String,
+    pub description: String,
     #[prost(message, repeated, tag = "4")]
     pub balances: ::prost::alloc::vec::Vec<BalanceSbModel>,
+    #[prost(int32, tag = "5")]
+    pub operation_type: i32,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -40,6 +42,8 @@ pub struct BalanceSbModel {
     pub is_locked: bool,
     #[prost(double, tag = "10")]
     pub reserved_amount: f64,
+    #[prost(int32, tag = "11")]
+    pub update_reason: i32,
 }
 
 impl BalancesUpdatedSbEvent {
