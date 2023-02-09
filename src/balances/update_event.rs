@@ -18,6 +18,8 @@ pub struct BalancesUpdatedSbEvent {
     pub balances: ::prost::alloc::vec::Vec<BalanceSbModel>,
     #[prost(int32, tag = "5")]
     pub operation_type: i32,
+    #[prost(message, repeated, tag = "6")]
+    pub updates: ::prost::alloc::vec::Vec<BalanceUpdateSbModel>,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -42,8 +44,24 @@ pub struct BalanceSbModel {
     pub is_locked: bool,
     #[prost(double, tag = "10")]
     pub reserved_amount: f64,
-    #[prost(int32, tag = "11")]
-    pub update_reason: i32,
+}
+
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BalanceUpdateSbModel {
+    #[prost(string, tag = "1")]
+    pub trader_id: String,
+    #[prost(string, tag = "2")]
+    pub wallet_id: String,
+    #[prost(int32, tag = "3")]
+    pub number: i32,
+    #[prost(string, tag = "4")]
+    pub asset_symbol: String,
+    #[prost(double, tag = "5")]
+    pub amount: f64,
+    #[prost(double, tag = "6")]
+    pub reserve_amount: f64,
+    #[prost(int32, tag = "7")]
+    pub reason: i32,
 }
 
 impl BalancesUpdatedSbEvent {
