@@ -64,6 +64,8 @@ pub struct BalanceUpdateSbModel {
     pub reserve_amount: f64,
     #[prost(int32, tag = "7")]
     pub reason: i32,
+    #[prost(string, tag = "8")]
+    pub update_id: String,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
