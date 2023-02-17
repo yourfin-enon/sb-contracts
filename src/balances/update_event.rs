@@ -84,8 +84,8 @@ pub struct BalanceUpdateInfoSbModel {
     pub available_amount_after: f64,
     #[prost(double, tag = "7")]
     pub reserved_amount_after: f64,
-    #[prost(string, tag = "8")]
-    pub update_date_micros: String,
+    #[prost(int64, tag = "8")]
+    pub update_date_micros: i64,
 }
 
 impl BalancesUpdatedSbEvent {
