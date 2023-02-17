@@ -11,7 +11,7 @@ pub struct BalancesUpdatedSbEvent {
     #[prost(string, tag = "1")]
     pub operation_id: String,
     #[prost(int64, tag = "2")]
-    pub timestamp: i64,
+    pub date_micros: i64,
     #[prost(string, tag = "3")]
     pub description: String,
     #[prost(message, repeated, tag = "4")]
@@ -31,7 +31,7 @@ pub struct BalanceSbModel {
     #[prost(string, tag = "2")]
     pub trader_id: ::prost::alloc::string::String,
     #[prost(int64, tag = "3")]
-    pub created_date: i64,
+    pub created_date_micros: i64,
     #[prost(string, tag = "4")]
     pub wallet_id: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
@@ -39,7 +39,7 @@ pub struct BalanceSbModel {
     #[prost(double, tag = "6")]
     pub amount: f64,
     #[prost(int64, tag = "7")]
-    pub last_update_date: i64,
+    pub last_update_date_micros: i64,
     #[prost(int32, tag = "8")]
     pub updates_count: i32,
     #[prost(bool, tag = "9")]
@@ -84,6 +84,8 @@ pub struct BalanceUpdateInfoSbModel {
     pub available_amount_after: f64,
     #[prost(double, tag = "7")]
     pub reserved_amount_after: f64,
+    #[prost(string, tag = "8")]
+    pub update_date_micros: String,
 }
 
 impl BalancesUpdatedSbEvent {
