@@ -11,7 +11,7 @@ pub struct UpdateBalancesSbCommand {
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
     #[prost(int64, tag = "2")]
-    pub timestamp: i64,
+    pub date_micros: i64,
     #[prost(string, tag = "3")]
     pub description: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
