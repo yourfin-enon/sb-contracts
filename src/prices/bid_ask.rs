@@ -17,6 +17,10 @@ pub struct BidAskSbModel {
     pub bid: f64,
     #[prost(double, tag = "4")]
     pub ask: f64,
+    #[prost(double, tag = "5")]
+    pub bid_volume: f64,
+    #[prost(double, tag = "6")]
+    pub ask_volume: f64,
 }
 
 impl BidAskSbModel {
