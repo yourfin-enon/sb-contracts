@@ -15,7 +15,7 @@ pub struct PositionClosedSbEvent {
     #[prost(message, optional, tag = "2")]
     pub order: Option<OrderSbModel>,
 
-    #[prost(message, optional, tag = "3")]
+    #[prost(double, optional, tag = "3")]
     pub pnl: Option<f64>,
     
     #[prost(map = "string, double", tag = "4")]
@@ -32,6 +32,7 @@ pub struct PositionClosedSbEvent {
 
     #[prost(enumeration = "PositionCloseReasonSb", tag = "8")]
     pub reason: i32,
+
     #[prost(int32, tag = "9")]
     pub status: i32,
 }

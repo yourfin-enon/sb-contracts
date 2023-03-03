@@ -24,7 +24,7 @@ pub struct OrderSbModel {
     pub margin_call_percent: f64,
     #[prost(map = "string, double", tag = "12")]
     pub invest_assets: std::collections::HashMap<String, f64>,
-    #[prost(message, optional, tag = "13")]
+    #[prost(double, optional, tag = "13")]
     pub desire_price: Option<f64>,
     #[prost(bool, tag = "14")]
     pub top_up_enabled: bool,
