@@ -13,13 +13,13 @@ pub struct PositionClosedSbEvent {
     pub id: String,
 
     #[prost(message, optional, tag = "2")]
-    pub order: ::core::option::Option<OrderSbModel>,
+    pub order: Option<OrderSbModel>,
 
     #[prost(message, optional, tag = "3")]
-    pub pnl: ::core::option::Option<f64>,
+    pub pnl: Option<f64>,
     
     #[prost(map = "string, double", tag = "4")]
-    pub asset_pnls: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+    pub asset_pnls: HashMap<String, f64>,
 
     #[prost(int64, tag = "5")]
     pub close_date_micros: i64,
@@ -28,7 +28,7 @@ pub struct PositionClosedSbEvent {
     pub close_price: f64,
 
     #[prost(map = "string, double", tag = "7")]
-    pub close_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+    pub close_asset_prices: HashMap<String, f64>,
 
     #[prost(enumeration = "PositionCloseReasonSb", tag = "8")]
     pub reason: i32,
@@ -36,7 +36,7 @@ pub struct PositionClosedSbEvent {
     pub status: i32,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, prost::Enumeration)]
 #[repr(i32)]
 pub enum PositionCloseReasonSb {
     ClientCommand = 0,
@@ -68,8 +68,8 @@ impl GetMySbModelTopicId for PositionClosedSbEvent {
 impl MySbMessageSerializer for PositionClosedSbEvent {
     fn serialize(
         &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
+        headers: Option<HashMap<String, String>>,
+    ) -> Result<(Vec<u8>, Option<HashMap<String, String>>), String> {
         let content = self.as_bytes();
 
         match content {
