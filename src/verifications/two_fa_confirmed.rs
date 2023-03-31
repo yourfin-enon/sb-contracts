@@ -9,7 +9,7 @@ pub struct TwoFaConfirmedSbModel {
     #[prost(string, tag = "1")]
     pub trader_id: String,
     #[prost(int32, tag = "2")]
-    pub reason: i32,
+    pub action: i32,
     #[prost(string, tag = "3")]
     pub session_id: String,
 }
