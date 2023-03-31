@@ -1,4 +1,6 @@
-use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId};
+use std::collections::HashMap;
+use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId, SubscriberError};
+use my_service_bus_abstractions::subscriber::MySbMessageDeserializer;
 
 pub const TOPIC_NAME: &str = "two-fa-confirmed";
 
@@ -18,7 +20,7 @@ impl TwoFaConfirmedSbModel {
         Ok(result)
     }
 
-    fn _from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
+    fn from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
         prost::Message::decode(bytes)
     }
 }
@@ -39,6 +41,21 @@ impl MySbMessageSerializer for TwoFaConfirmedSbModel {
         return match content {
             Ok(content) => Ok((content, headers)),
             Err(err) => Err(format!("{err}")),
+        }
+    }
+}
+
+impl MySbMessageDeserializer for TwoFaConfirmedSbModel {
+    type Item = TwoFaConfirmedSbModel;
+    fn deserialize(
+        src: &[u8],
+        _headers: &Option<HashMap<String, String>>,
+    ) -> Result<Self::Item, SubscriberError> {
+        let result = TwoFaConfirmedSbModel::from_bytes(src);
+
+        return match result {
+            Ok(model) => Ok(model),
+            Err(err) => Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
         }
     }
 }
