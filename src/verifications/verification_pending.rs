@@ -10,6 +10,8 @@ pub struct VerificationPendingSbModel {
     pub r#type: i32,
     #[prost(string, tag = "3")]
     pub code: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub reason: i32,
 }
 
 impl VerificationPendingSbModel {

@@ -8,6 +8,8 @@ pub struct VerificationConfirmedSbModel {
     pub trader_id: ::prost::alloc::string::String,
     #[prost(int32, tag = "2")]
     pub r#type: i32,
+    #[prost(int32, tag = "3")]
+    pub reason: i32,
 }
 
 impl VerificationConfirmedSbModel {
