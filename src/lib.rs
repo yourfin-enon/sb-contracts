@@ -7,3 +7,5 @@ pub mod prices;
 pub mod balances;
 #[cfg(feature="positions")]
 pub mod positions;
+#[cfg(feature="transactions")]
+pub mod transactions;
