@@ -2,14 +2,39 @@ use std::collections::HashMap;
 use my_service_bus_abstractions::{GetMySbModelTopicId, SubscriberError};
 use my_service_bus_abstractions::publisher::MySbMessageSerializer;
 use my_service_bus_abstractions::subscriber::MySbMessageDeserializer;
-use crate::transactions::shared::TransactionSbModel;
 
 pub const TOPIC_NAME: &str = "transaction-received";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransactionReceivedSbEvent {
-    #[prost(message, tag = "1")]
-    pub transaction: Option<TransactionSbModel>,
+    #[prost(int64, tag = "1")]
+    pub date_micros: i64,
+    #[prost(string, tag = "2")]
+    pub asset_symbol: String,
+    #[prost(string, tag = "3")]
+    pub tx_id: String,
+    #[prost(string, tag = "4")]
+    pub destination_address: String,
+    #[prost(string, optional, tag = "5")]
+    pub source_address: Option<String>,
+    #[prost(string, tag = "6")]
+    pub wallet_id: String,
+    #[prost(int32, tag = "7")]
+    pub transaction_type: i32,
+    #[prost(double, tag = "8")]
+    pub asset_amount: f64,
+    #[prost(string, tag = "9")]
+    pub trader_id: String,
+    #[prost(string, tag = "10")]
+    pub blockchain_symbol: String,
+    #[prost(double, tag = "11")]
+    pub fee_amount: f64,
+    #[prost(int32, tag = "12")]
+    pub status: i32,
+    #[prost(string, tag = "13")]
+    pub external_id: String,
+    #[prost(int32, tag = "14")]
+    pub payment_provider: i32,
 }
 
 impl TransactionReceivedSbEvent {
