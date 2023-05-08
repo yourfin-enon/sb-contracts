@@ -9,3 +9,5 @@ pub mod balances;
 pub mod positions;
 #[cfg(feature="transactions")]
 pub mod transactions;
+#[cfg(feature="sessions")]
+pub mod sessions;
