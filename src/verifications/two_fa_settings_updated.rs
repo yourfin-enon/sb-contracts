@@ -2,17 +2,17 @@ use std::collections::HashMap;
 use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId, SubscriberError};
 use my_service_bus_abstractions::subscriber::MySbMessageDeserializer;
 
-pub const TOPIC_NAME: &str = "two-fa-settings-changed";
+pub const TOPIC_NAME: &str = "two-fa-settings-updated";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TwoFaSettingsChangedSbModel {
+pub struct TwoFaSettingsUpdatedSbModel {
     #[prost(string, tag = "1")]
     pub trader_id: String,
     #[prost(bool, tag = "2")]
     pub google_code_enabled: bool,
 }
 
-impl TwoFaSettingsChangedSbModel {
+impl TwoFaSettingsUpdatedSbModel {
     fn as_bytes(&self) -> Result<Vec<u8>, prost::EncodeError> {
         let mut result = Vec::new();
         prost::Message::encode(self, &mut result)?;
@@ -24,13 +24,13 @@ impl TwoFaSettingsChangedSbModel {
     }
 }
 
-impl GetMySbModelTopicId for TwoFaSettingsChangedSbModel {
+impl GetMySbModelTopicId for TwoFaSettingsUpdatedSbModel {
     fn get_topic_id() -> &'static str {
         TOPIC_NAME
     }
 }
 
-impl MySbMessageSerializer for TwoFaSettingsChangedSbModel {
+impl MySbMessageSerializer for TwoFaSettingsUpdatedSbModel {
     fn serialize(
         &self,
         headers: Option<std::collections::HashMap<String, String>>,
@@ -44,13 +44,13 @@ impl MySbMessageSerializer for TwoFaSettingsChangedSbModel {
     }
 }
 
-impl MySbMessageDeserializer for TwoFaSettingsChangedSbModel {
-    type Item = TwoFaSettingsChangedSbModel;
+impl MySbMessageDeserializer for TwoFaSettingsUpdatedSbModel {
+    type Item = TwoFaSettingsUpdatedSbModel;
     fn deserialize(
         src: &[u8],
         _headers: &Option<HashMap<String, String>>,
     ) -> Result<Self::Item, SubscriberError> {
-        let result = TwoFaSettingsChangedSbModel::from_bytes(src);
+        let result = TwoFaSettingsUpdatedSbModel::from_bytes(src);
 
         return match result {
             Ok(model) => Ok(model),
