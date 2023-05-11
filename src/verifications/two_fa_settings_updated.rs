@@ -9,7 +9,7 @@ pub struct TwoFaSettingsUpdatedSbModel {
     #[prost(string, tag = "1")]
     pub trader_id: String,
     #[prost(bool, tag = "2")]
-    pub google_code_enabled: bool,
+    pub google_code_enabled: Option<bool>,
 }
 
 impl TwoFaSettingsUpdatedSbModel {
