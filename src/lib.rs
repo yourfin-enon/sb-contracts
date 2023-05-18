@@ -11,3 +11,5 @@ pub mod positions;
 pub mod transactions;
 #[cfg(feature="sessions")]
 pub mod sessions;
+#[cfg(feature="personal-data")]
+mod personal_data;
