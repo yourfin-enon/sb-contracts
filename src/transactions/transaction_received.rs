@@ -28,15 +28,13 @@ pub struct TransactionReceivedSbEvent {
     #[prost(string, tag = "10")]
     pub blockchain_symbol: String,
     #[prost(double, tag = "11")]
-    pub fee_amount: f64,
+    pub payment_provider_fee: f64,
     #[prost(int32, tag = "12")]
     pub status: i32,
     #[prost(string, tag = "13")]
     pub external_id: String,
     #[prost(int32, tag = "14")]
     pub payment_provider: i32,
-    #[prost(double, tag = "15")]
-    pub payment_provider_fee: f64,
 }
 
 impl TransactionReceivedSbEvent {
