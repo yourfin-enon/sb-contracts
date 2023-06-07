@@ -35,7 +35,7 @@ pub struct TransactionReceivedSbEvent {
     pub external_id: String,
     #[prost(int32, tag = "14")]
     pub payment_provider: i32,
-    #[prost(int32, tag = "15")]
+    #[prost(double, tag = "15")]
     pub payment_provider_fee: f64,
 }
 
