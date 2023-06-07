@@ -5,27 +5,19 @@ use my_service_bus_abstractions::{
 };
 use std::collections::HashMap;
 
-pub const TOPIC_NAME: &str = "wallet-position-activated";
+pub const TOPIC_NAME: &str = "wallet-position-margin-call";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PositionActivedSbEvent {
+pub struct PositionMarginCallSbEvent {
     #[prost(string, tag = "1")]
     pub id: String,
     #[prost(message, optional, tag = "2")]
-    pub order: ::core::option::Option<OrderSbModel>,
-    #[prost(double, tag = "3")]
-    pub activate_price: f64,
-    #[prost(int64, tag = "4")]
-    pub activate_date_micros: i64,
-    #[prost(map = "string, double", tag = "5")]
-    pub activate_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
-    #[prost(int64, tag = "6")]
-    pub open_date_micros: i64,
-    #[prost(map = "string, double", tag = "7")]
-    pub open_asset_prices: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+    pub order: Option<OrderSbModel>,
+    #[prost(double, optional, tag = "3")]
+    pub pnl: Option<f64>,
 }
 
-impl PositionActivedSbEvent {
+impl PositionMarginCallSbEvent {
     pub fn as_bytes(&self) -> Result<Vec<u8>, prost::EncodeError> {
         let version: u8 = 0;
         let mut result = vec![version];
@@ -38,13 +30,13 @@ impl PositionActivedSbEvent {
     }
 }
 
-impl GetMySbModelTopicId for PositionActivedSbEvent {
+impl GetMySbModelTopicId for PositionMarginCallSbEvent {
     fn get_topic_id() -> &'static str {
         TOPIC_NAME
     }
 }
 
-impl MySbMessageSerializer for PositionActivedSbEvent {
+impl MySbMessageSerializer for PositionMarginCallSbEvent {
     fn serialize(
         &self,
         headers: Option<std::collections::HashMap<String, String>>,
@@ -58,13 +50,13 @@ impl MySbMessageSerializer for PositionActivedSbEvent {
     }
 }
 
-impl MySbMessageDeserializer for PositionActivedSbEvent {
-    type Item = PositionActivedSbEvent;
+impl MySbMessageDeserializer for PositionMarginCallSbEvent {
+    type Item = PositionMarginCallSbEvent;
     fn deserialize(
         src: &[u8],
         _headers: &Option<HashMap<String, String>>,
     ) -> Result<Self::Item, SubscriberError> {
-        let result = PositionActivedSbEvent::from_bytes(src);
+        let result = PositionMarginCallSbEvent::from_bytes(src);
 
         match result {
             Ok(model) => return Ok(model),
