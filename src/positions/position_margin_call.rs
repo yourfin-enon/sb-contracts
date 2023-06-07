@@ -13,8 +13,8 @@ pub struct PositionMarginCallSbEvent {
     pub id: String,
     #[prost(message, optional, tag = "2")]
     pub order: Option<OrderSbModel>,
-    #[prost(double, optional, tag = "3")]
-    pub pnl: Option<f64>,
+    #[prost(double, tag = "3")]
+    pub pnl: f64,
 }
 
 impl PositionMarginCallSbEvent {
