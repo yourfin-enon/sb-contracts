@@ -15,6 +15,8 @@ pub struct PositionMarginCallSbEvent {
     pub order: Option<OrderSbModel>,
     #[prost(double, tag = "3")]
     pub pnl: f64,
+    #[prost(double, tag = "4")]
+    pub loss_percent: f64,
 }
 
 impl PositionMarginCallSbEvent {
