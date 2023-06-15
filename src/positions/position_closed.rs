@@ -35,6 +35,12 @@ pub struct PositionClosedSbEvent {
 
     #[prost(int32, tag = "9")]
     pub status: i32,
+
+    #[prost(double, tag = "10")]
+    pub activate_price: f64,
+
+    #[prost(double, tag = "11")]
+    pub total_invest_amount: f64,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, prost::Enumeration)]
