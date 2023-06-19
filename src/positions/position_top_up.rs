@@ -15,6 +15,8 @@ pub struct PositionTopUpSbEvent {
     pub order: Option<OrderSbModel>,
     #[prost(message, repeated, tag = "3")]
     pub top_ups: Vec<TopUpSbModel>,
+    #[prost(message, repeated, tag = "4")]
+    pub canceled_top_ups: Vec<TopUpSbModel>,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
