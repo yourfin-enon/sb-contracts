@@ -9,7 +9,7 @@ pub const TOPIC_NAME: &str = "wallet-balances-update-commands";
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBalancesSbCommand {
     #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
+    pub operation_id: ::prost::alloc::string::String,
     #[prost(int64, tag = "2")]
     pub date_micros: i64,
     #[prost(string, tag = "3")]
@@ -18,6 +18,8 @@ pub struct UpdateBalancesSbCommand {
     pub updates: ::prost::alloc::vec::Vec<BalanceUpdateSbModel>,
     #[prost(int32, tag = "5")]
     pub operation_type: i32,
+    #[prost(string, tag = "6")]
+    pub process_id: ::prost::alloc::string::String,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
