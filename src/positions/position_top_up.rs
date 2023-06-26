@@ -17,6 +17,8 @@ pub struct PositionTopUpSbEvent {
     pub active_top_ups: Vec<ActiveTopUpSbModel>,
     #[prost(message, repeated, tag = "4")]
     pub canceled_top_ups: Vec<CanceledTopUpSbModel>,
+    #[prost(map = "string, double", tag = "5")]
+    pub total_invest_assets: std::collections::HashMap<String, f64>,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
