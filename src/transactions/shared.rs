@@ -13,6 +13,7 @@ pub enum TransactionStatusSb {
     Pending = 0,
     Approved = 1,
     Failed = 2,
+    Declined = 3,
 }
 
 #[derive(Debug, Clone, IntoPrimitive, TryFromPrimitive)]
