@@ -8,6 +8,10 @@ pub const TOPIC_NAME: &str = "personaldata-phone-updated";
 pub struct PersonalDataPhoneUpdatedSbModel {
     #[prost(string, tag = "1")]
     pub trader_id: String,
+    #[prost(optional, string, tag = "2")]
+    pub old_phone: Option<String>,
+    #[prost(string, tag = "3")]
+    pub new_phone: String,
 }
 
 impl PersonalDataPhoneUpdatedSbModel {
