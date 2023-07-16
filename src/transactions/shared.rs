@@ -20,4 +20,5 @@ pub enum TransactionStatusSb {
 #[repr(i32)]
 pub enum PaymentProvider {
     CoinsPaid = 0,
+    Unlimit = 1,
 }
