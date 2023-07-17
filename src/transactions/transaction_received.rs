@@ -37,8 +37,10 @@ pub struct TransactionReceivedSbEvent {
     pub payment_provider: i32,
     #[prost(string, optional, tag = "15")]
     pub memo: Option<String>,
-    #[prost(double, tag = "16")]
+    #[prost(double, optional, tag = "16")]
     pub internal_fee: f64,
+    #[prost(string, optional, tag = "17")]
+    pub order_id: String,
 }
 
 impl TransactionReceivedSbEvent {
