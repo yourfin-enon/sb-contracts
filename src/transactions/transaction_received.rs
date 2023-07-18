@@ -46,7 +46,7 @@ pub struct TransactionReceivedSbEvent {
     #[prost(double, optional, tag = "19")]
     pub buy_asset_amount: Option<f64>,
     #[prost(message, repeated, tag = "20")]
-    pub tx_ids: Vec<String>,
+    pub ref_tx_ids: Vec<String>,
 }
 
 impl TransactionReceivedSbEvent {
