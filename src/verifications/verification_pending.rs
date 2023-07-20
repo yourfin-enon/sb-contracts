@@ -22,6 +22,8 @@ pub struct VerificationPendingSbModel {
 pub struct WithdrawalVerificationAdditionalDataSbModel {
     pub address: String,
     pub asset_amount: f64,
+    pub asset_symbol: String,
+    pub blockchain_symbol: String,
 }
 
 impl GetMySbModelTopicId for VerificationPendingSbModel {
