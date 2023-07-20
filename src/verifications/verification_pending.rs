@@ -1,5 +1,6 @@
 use crate::shared::{from_bytes, into_bytes};
 use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId};
+use serde::{Deserialize, Serialize};
 
 pub const SEND_TOPIC_NAME: &str = "verification-pending";
 
@@ -13,45 +14,14 @@ pub struct VerificationPendingSbModel {
     pub code: ::prost::alloc::string::String,
     #[prost(int32, tag = "4")]
     pub reason: i32,
-    #[prost(bytes = "vec", tag = "5")]
-    pub additional_data_bytes: Vec<u8>,
+    #[prost(optional, string, tag = "5")]
+    pub additional_data_json: Option<String>,
 }
 
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawalVerificationAdditionalDataSbModel {
-    #[prost(string, tag = "1")]
-    pub address: ::prost::alloc::string::String,
-    #[prost(double, tag = "2")]
+    pub address: String,
     pub asset_amount: f64,
-}
-
-impl VerificationPendingSbModel {
-    pub fn get_additional_data<T: ::prost::Message + Default>(
-        &self,
-    ) -> Result<T, String> {
-        let result = from_bytes(&self.additional_data_bytes);
-
-        let Ok(data) = result else {
-            return Err(format!("{:?}", result.unwrap_err()));
-        };
-
-        Ok(data)
-    }
-
-    pub fn set_additional_data<T: ::prost::Message + Default>(
-        &mut self,
-        data: &T,
-    ) -> Result<(), String> {
-        let result = into_bytes(data);
-
-        let Ok(data_bytes) = result else {
-            return Err(format!("{:?}", result.unwrap_err()));
-        };
-
-        self.additional_data_bytes = data_bytes;
-
-        Ok(())
-    }
 }
 
 impl GetMySbModelTopicId for VerificationPendingSbModel {
