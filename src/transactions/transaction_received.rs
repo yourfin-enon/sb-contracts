@@ -43,6 +43,8 @@ pub struct TransactionReceivedSbEvent {
     pub order_id: Option<String>,
     #[prost(string, repeated, tag = "18")]
     pub ref_tx_ids: Vec<String>,
+    #[prost(string, optional, tag = "19")]
+    pub provider_fee_details_json: Option<String>,
 }
 
 impl TransactionReceivedSbEvent {
