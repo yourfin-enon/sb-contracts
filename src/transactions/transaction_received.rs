@@ -72,7 +72,7 @@ impl MySbMessageSerializer for TransactionReceivedSbEvent {
     ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
         let content = self.as_bytes();
 
-        return match content {
+        match content {
             Ok(content) => Ok((content, headers)),
             Err(err) => Err(format!("{err}")),
         }
@@ -87,7 +87,7 @@ impl MySbMessageDeserializer for TransactionReceivedSbEvent {
     ) -> Result<Self::Item, SubscriberError> {
         let result = TransactionReceivedSbEvent::from_bytes(src);
 
-        return match result {
+        match result {
             Ok(model) => Ok(model),
             Err(err) => Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
         }
