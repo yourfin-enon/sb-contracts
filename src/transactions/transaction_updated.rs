@@ -38,6 +38,8 @@ pub struct TransactionUpdatedSbEvent {
     pub payment_provider: i32,
     #[prost(string, tag = "15")]
     pub id: String,
+    #[prost(message, optional, tag = "16")]
+    pub before_update: Option<TransactionUpdatedSbEvent>,
 }
 
 impl GetMySbModelTopicId for TransactionUpdatedSbEvent {
