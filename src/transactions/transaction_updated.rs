@@ -45,7 +45,7 @@ pub struct TransactionUpdatedSbEvent {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransactionPrevStateSbModel {
     #[prost(int64, tag = "1")]
-    pub last_update_ts_millis: i64,
+    pub last_update_ts_micros: i64,
     #[prost(string, tag = "2")]
     pub tx_id: String,
     #[prost(int32, tag = "3")]
