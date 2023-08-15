@@ -39,7 +39,17 @@ pub struct TransactionUpdatedSbEvent {
     #[prost(string, tag = "15")]
     pub id: String,
     #[prost(message, optional, tag = "16")]
-    pub before_update: Option<TransactionUpdatedSbEvent>,
+    pub prev_state: Option<TransactionPrevStateSbModel>,
+}
+
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TransactionPrevStateSbModel {
+    #[prost(int64, tag = "1")]
+    pub last_update_ts_millis: i64,
+    #[prost(string, tag = "2")]
+    pub tx_id: String,
+    #[prost(int32, tag = "3")]
+    pub status: i32,
 }
 
 impl GetMySbModelTopicId for TransactionUpdatedSbEvent {
