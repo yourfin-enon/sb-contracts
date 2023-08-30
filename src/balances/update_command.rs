@@ -15,7 +15,7 @@ pub struct UpdateBalancesSbCommand {
     #[prost(string, tag = "3")]
     pub description: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
-    pub updates: ::prost::alloc::vec::Vec<BalanceUpdateSbModel>,
+    pub updates: ::prost::alloc::vec::Vec<BalanceUpdateCommandSbModel>,
     #[prost(int32, tag = "5")]
     pub operation_type: i32,
     #[prost(string, tag = "6")]
@@ -23,7 +23,7 @@ pub struct UpdateBalancesSbCommand {
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BalanceUpdateSbModel {
+pub struct BalanceUpdateCommandSbModel {
     #[prost(int32, tag = "1")]
     pub number: i32,
     #[prost(string, tag = "2")]
