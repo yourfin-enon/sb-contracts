@@ -3,7 +3,7 @@ use my_service_bus_abstractions::{
     SubscriberError,
 };
 use std::collections::HashMap;
-use crate::balances::{BalanceSbModel, BalanceUpdateInfoSbModel, BalanceUpdateSbModel};
+use crate::balances::shared::{BalanceSbModel, BalanceUpdateInfoSbModel, BalanceUpdateSbModel};
 
 pub const TOPIC_NAME: &str = "wallet-balances-updated";
 
