@@ -6,7 +6,7 @@ use crate::shared::{from_bytes, into_bytes};
 pub const TOPIC_NAME: &str = "wallet-margin-call";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WalletMarginCallSbModel {
+pub struct WalletMarginCallSbEvent {
     #[prost(string, tag = "1")]
     pub trader_id: String,
     #[prost(string, tag = "2")]
@@ -15,13 +15,13 @@ pub struct WalletMarginCallSbModel {
     pub loss_percent: f64,
 }
 
-impl GetMySbModelTopicId for WalletMarginCallSbModel {
+impl GetMySbModelTopicId for WalletMarginCallSbEvent {
     fn get_topic_id() -> &'static str {
         TOPIC_NAME
     }
 }
 
-impl MySbMessageSerializer for WalletMarginCallSbModel {
+impl MySbMessageSerializer for WalletMarginCallSbEvent {
     fn serialize(
         &self,
         headers: Option<HashMap<String, String>>,
@@ -35,8 +35,8 @@ impl MySbMessageSerializer for WalletMarginCallSbModel {
     }
 }
 
-impl MySbMessageDeserializer for WalletMarginCallSbModel {
-    type Item = WalletMarginCallSbModel;
+impl MySbMessageDeserializer for WalletMarginCallSbEvent {
+    type Item = WalletMarginCallSbEvent;
     fn deserialize(
         src: &[u8],
         _headers: &Option<HashMap<String, String>>,
