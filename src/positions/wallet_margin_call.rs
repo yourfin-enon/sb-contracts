@@ -11,7 +11,7 @@ pub struct WalletMarginCallSbModel {
     pub trader_id: String,
     #[prost(string, tag = "2")]
     pub wallet_id: String,
-    #[prost(string, tag = "3")]
+    #[prost(double, tag = "3")]
     pub loss_percent: f64,
 }
 
