@@ -68,6 +68,8 @@ impl BidAskDateTime {
 
 /// Nested message and enum types in `DateTime`.
 pub mod date_time {
+    use num_enum::TryFromPrimitive;
+
     #[derive(
         Clone,
         Copy,
@@ -77,6 +79,7 @@ pub mod date_time {
         Hash,
         PartialOrd,
         Ord,
+        TryFromPrimitive,
         ::prost::Enumeration,
     )]
     #[repr(i32)]
@@ -90,6 +93,7 @@ pub mod date_time {
         /// dubious
         Minmax = 15,
     }
+
     impl TimeSpanScale {
         pub fn as_str_name(&self) -> &'static str {
             match self {
@@ -103,6 +107,7 @@ pub mod date_time {
             }
         }
     }
+
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
     pub enum DateTimeKind {
@@ -111,6 +116,7 @@ pub mod date_time {
         Utc = 1,
         Local = 2,
     }
+
     impl DateTimeKind {
         pub fn as_str_name(&self) -> &'static str {
             match self {
