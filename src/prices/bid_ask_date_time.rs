@@ -68,8 +68,6 @@ impl BidAskDateTime {
 
 /// Nested message and enum types in `DateTime`.
 pub mod date_time {
-    use num_enum::TryFromPrimitive;
-
     #[derive(
         Clone,
         Copy,
@@ -79,7 +77,6 @@ pub mod date_time {
         Hash,
         PartialOrd,
         Ord,
-        TryFromPrimitive,
         ::prost::Enumeration,
     )]
     #[repr(i32)]
