@@ -7,6 +7,7 @@ use crate::shared::{from_bytes, into_bytes};
 
 pub const TOPIC_NAME: &str = "wallet-balance-lock-updated";
 
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BalanceLockUpdatedSbEvent {
     #[prost(message, tag = "1")]
     pub balances: BalanceSbModel,
