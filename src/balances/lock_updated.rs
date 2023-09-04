@@ -9,8 +9,8 @@ pub const TOPIC_NAME: &str = "wallet-balance-lock-updated";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BalanceLockUpdatedSbEvent {
-    #[prost(message, tag = "1")]
-    pub balances: BalanceSbModel,
+    #[prost(message, optional, tag = "1")]
+    pub balances: Option<BalanceSbModel>,
 }
 
 impl GetMySbModelTopicId for BalanceLockUpdatedSbEvent {
