@@ -17,6 +17,8 @@ pub struct PositionMarginCallSbEvent {
     pub pnl: f64,
     #[prost(double, tag = "4")]
     pub loss_percent: f64,
+    #[prost(double, tag = "5")]
+    pub total_invest_amount: f64,
 }
 
 impl PositionMarginCallSbEvent {
