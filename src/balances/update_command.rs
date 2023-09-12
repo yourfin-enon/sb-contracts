@@ -6,7 +6,7 @@ use std::collections::HashMap;
 
 pub const TOPIC_NAME: &str = "wallet-balances-update-commands";
 
-#[derive(Clone, PartialEq, ::prost::Message, Debug)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBalancesSbCommand {
     #[prost(string, tag = "1")]
     pub operation_id: ::prost::alloc::string::String,
@@ -22,7 +22,7 @@ pub struct UpdateBalancesSbCommand {
     pub process_id: ::prost::alloc::string::String,
 }
 
-#[derive(Clone, PartialEq, ::prost::Message, Debug)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BalanceUpdateCommandSbModel {
     #[prost(int32, tag = "1")]
     pub number: i32,
