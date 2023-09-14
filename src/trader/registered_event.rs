@@ -8,18 +8,18 @@ use std::collections::HashMap;
 pub const TOPIC_NAME: &str = "client-register";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TraderRegisterSbEvent {
+pub struct TraderRegisteredSbEvent {
     #[prost(string, tag = "1")]
     pub trader_id: String,
 }
 
-impl GetMySbModelTopicId for TraderRegisterSbEvent {
+impl GetMySbModelTopicId for TraderRegisteredSbEvent {
     fn get_topic_id() -> &'static str {
         TOPIC_NAME
     }
 }
 
-impl MySbMessageSerializer for TraderRegisterSbEvent {
+impl MySbMessageSerializer for TraderRegisteredSbEvent {
     fn serialize(
         &self,
         headers: Option<HashMap<String, String>>,
@@ -33,8 +33,8 @@ impl MySbMessageSerializer for TraderRegisterSbEvent {
     }
 }
 
-impl MySbMessageDeserializer for TraderRegisterSbEvent {
-    type Item = TraderRegisterSbEvent;
+impl MySbMessageDeserializer for TraderRegisteredSbEvent {
+    type Item = TraderRegisteredSbEvent;
     fn deserialize(
         src: &[u8],
         _headers: &Option<HashMap<String, String>>,
