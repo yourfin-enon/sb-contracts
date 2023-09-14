@@ -14,3 +14,5 @@ pub mod sessions;
 #[cfg(feature="personal-data")]
 pub mod personal_data;
 pub mod shared;
+#[cfg(feature="trader")]
+pub mod trader;
