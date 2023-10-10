@@ -1,4 +1,6 @@
-use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId};
+use std::collections::HashMap;
+use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId, SubscriberError};
+use my_service_bus_abstractions::subscriber::MySbMessageDeserializer;
 
 pub const SEND_TOPIC_NAME: &str = "verification-confirmed";
 
@@ -19,7 +21,7 @@ impl VerificationConfirmedSbModel {
         Ok(result)
     }
 
-    fn _from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
+    fn from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
         prost::Message::decode(bytes)
     }
 }
@@ -33,13 +35,28 @@ impl GetMySbModelTopicId for VerificationConfirmedSbModel {
 impl MySbMessageSerializer for VerificationConfirmedSbModel {
     fn serialize(
         &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
+        headers: Option<HashMap<String, String>>,
+    ) -> Result<(Vec<u8>, Option<HashMap<String, String>>), String> {
         let content = self.as_bytes();
 
         match content {
-            Ok(content) => return Ok((content, headers)),
-            Err(err) => return Err(format!("{err}")),
+            Ok(content) => Ok((content, headers)),
+            Err(err) => Err(format!("{err}")),
+        }
+    }
+}
+
+impl MySbMessageDeserializer for VerificationConfirmedSbModel {
+    type Item = VerificationConfirmedSbModel;
+    fn deserialize(
+        src: &[u8],
+        _headers: &Option<HashMap<String, String>>,
+    ) -> Result<Self::Item, SubscriberError> {
+        let result = VerificationConfirmedSbModel::from_bytes(src);
+
+        match result {
+            Ok(model) => Ok(model),
+            Err(err) => Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
         }
     }
 }
