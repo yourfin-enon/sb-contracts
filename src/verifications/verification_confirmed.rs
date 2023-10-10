@@ -12,6 +12,8 @@ pub struct VerificationConfirmedSbModel {
     pub r#type: i32,
     #[prost(int32, tag = "3")]
     pub reason: i32,
+    #[prost(bool, tag = "4")]
+    pub has_prev: bool,
 }
 
 impl VerificationConfirmedSbModel {
