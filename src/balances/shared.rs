@@ -39,9 +39,9 @@ pub struct BalanceUpdateInfoSbModel {
     #[prost(int64, tag = "8")]
     pub update_date_micros: i64,
     #[prost(int64, tag = "9")]
-    pub bonus_amount_before: i64,
+    pub bonus_amount_before: f64,
     #[prost(int64, tag = "10")]
-    pub bonus_amount_after: i64,
+    pub bonus_amount_after: f64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
