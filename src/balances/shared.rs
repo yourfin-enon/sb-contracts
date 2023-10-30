@@ -16,7 +16,7 @@ pub struct BalanceUpdateSbModel {
     pub reason: i32,
     #[prost(string, tag = "8")]
     pub update_id: String,
-    #[prost(string, tag = "9")]
+    #[prost(double, tag = "9")]
     pub bonus_amount: f64,
 }
 
