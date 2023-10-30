@@ -49,9 +49,9 @@ impl MySbMessageSerializer for BidAskSbModel {
     ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
         let content = self.as_bytes();
 
-        match content {
-            Ok(content) => return Ok((content, headers)),
-            Err(err) => return Err(format!("{err}")),
+        return match content {
+            Ok(content) => Ok((content, headers)),
+            Err(err) => Err(format!("{err}")),
         }
     }
 }
@@ -64,9 +64,9 @@ impl MySbMessageDeserializer for BidAskSbModel {
     ) -> Result<Self::Item, SubscriberError> {
         let result = BidAskSbModel::from_bytes(src);
 
-        match result {
-            Ok(model) => return Ok(model),
-            Err(err) => return Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
+        return match result {
+            Ok(model) => Ok(model),
+            Err(err) => Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
         }
     }
 }

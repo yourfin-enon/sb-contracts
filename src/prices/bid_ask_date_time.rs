@@ -41,7 +41,7 @@ impl BidAskDateTime {
 
         match scale {
             date_time::TimeSpanScale::Ticks => self.value / 10,
-            date_time::TimeSpanScale::Seconds => self.value * 1_000_00,
+            date_time::TimeSpanScale::Seconds => self.value * 100_000,
             date_time::TimeSpanScale::Milliseconds => self.value * 1_000,
             date_time::TimeSpanScale::Minutes => self.value * 60_000_000,
             date_time::TimeSpanScale::Hours => self.value * 3_600_000_000,
