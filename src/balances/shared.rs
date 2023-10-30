@@ -16,6 +16,8 @@ pub struct BalanceUpdateSbModel {
     pub reason: i32,
     #[prost(string, tag = "8")]
     pub update_id: String,
+    #[prost(string, tag = "9")]
+    pub bonus_amount: f64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -36,6 +38,10 @@ pub struct BalanceUpdateInfoSbModel {
     pub reserved_amount_after: f64,
     #[prost(int64, tag = "8")]
     pub update_date_micros: i64,
+    #[prost(int64, tag = "9")]
+    pub bonus_amount_before: i64,
+    #[prost(int64, tag = "10")]
+    pub bonus_amount_after: i64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -60,4 +66,6 @@ pub struct BalanceSbModel {
     pub is_locked: bool,
     #[prost(double, tag = "10")]
     pub reserved_amount: f64,
+    #[prost(double, tag = "11")]
+    pub bonus_amount: f64,
 }
