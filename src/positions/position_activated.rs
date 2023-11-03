@@ -27,6 +27,8 @@ pub struct PositionActivedSbEvent {
     pub open_price: f64,
     #[prost(map = "string, double", tag = "9")]
     pub total_invest_assets: HashMap<String, f64>,
+    #[prost(map = "string, double", tag = "10")]
+    pub invest_bonus_assets: HashMap<String, f64>,
 }
 
 impl PositionActivedSbEvent {
