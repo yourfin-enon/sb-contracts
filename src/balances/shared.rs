@@ -17,7 +17,9 @@ pub struct BalanceUpdateSbModel {
     #[prost(string, tag = "8")]
     pub update_id: String,
     #[prost(double, tag = "9")]
-    pub bonus_amount: f64,
+    pub bonus: f64,
+    #[prost(double, tag = "10")]
+    pub reserve_bonus: f64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -39,9 +41,13 @@ pub struct BalanceUpdateInfoSbModel {
     #[prost(int64, tag = "8")]
     pub update_date_micros: i64,
     #[prost(double, tag = "9")]
-    pub bonus_amount_before: f64,
+    pub bonus_before: f64,
     #[prost(double, tag = "10")]
-    pub bonus_amount_after: f64,
+    pub bonus_after: f64,
+    #[prost(double, tag = "11")]
+    pub reserved_bonus_before: f64,
+    #[prost(double, tag = "12")]
+    pub reserved_bonus_after: f64,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -67,5 +73,7 @@ pub struct BalanceSbModel {
     #[prost(double, tag = "10")]
     pub reserved_amount: f64,
     #[prost(double, tag = "11")]
-    pub bonus_amount: f64,
+    pub bonus: f64,
+    #[prost(double, tag = "12")]
+    pub reserved_bonus: f64,
 }

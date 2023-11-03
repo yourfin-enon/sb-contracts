@@ -38,6 +38,10 @@ pub struct BalanceUpdateCommandSbModel {
     pub reserve_amount: f64,
     #[prost(int32, tag = "7")]
     pub update_reason: i32,
+    #[prost(double, tag = "8")]
+    pub bonus: f64,
+    #[prost(double, tag = "9")]
+    pub reserve_bonus: f64,
 }
 
 impl UpdateBalancesSbCommand {
