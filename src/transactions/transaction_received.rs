@@ -1,7 +1,8 @@
-use std::collections::HashMap;
-use my_service_bus_abstractions::{GetMySbModelTopicId, SubscriberError};
+use crate::transactions::shared::transaction_sb_event;
 use my_service_bus_abstractions::publisher::MySbMessageSerializer;
 use my_service_bus_abstractions::subscriber::MySbMessageDeserializer;
+use my_service_bus_abstractions::{GetMySbModelTopicId, SubscriberError};
+use std::collections::HashMap;
 
 pub const TOPIC_NAME: &str = "transaction-received";
 
@@ -45,6 +46,8 @@ pub struct TransactionReceivedSbEvent {
     pub ref_tx_ids: Vec<String>,
     #[prost(string, optional, tag = "19")]
     pub provider_fee_details_json: Option<String>,
+    #[prost(oneof = "transaction_sb_event::AdditionalInfo", tags = "20")]
+    pub additional_info: ::core::option::Option<transaction_sb_event::AdditionalInfo>,
 }
 
 impl TransactionReceivedSbEvent {
