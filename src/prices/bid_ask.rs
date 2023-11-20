@@ -1,13 +1,8 @@
 use super::bid_ask_date_time::BidAskDateTime;
-use my_service_bus_abstractions::{
-    publisher::MySbMessageSerializer, subscriber::MySbMessageDeserializer, GetMySbModelTopicId,
-    SubscriberError,
-};
-use std::collections::HashMap;
-
-pub const SEND_TOPIC_NAME: &str = "bidask";
+service_sdk::macros::use_my_sb_entity_protobuf_model!();
 
 #[derive(Clone, PartialEq, ::prost::Message)]
+#[my_sb_entity_protobuf_model_with_version(topic_id = "bidask")]
 pub struct BidAskSbModel {
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
@@ -21,52 +16,4 @@ pub struct BidAskSbModel {
     pub bid_volume: f64,
     #[prost(double, tag = "6")]
     pub ask_volume: f64,
-}
-
-impl BidAskSbModel {
-    pub fn as_bytes(&self) -> Result<Vec<u8>, prost::EncodeError> {
-        let version: u8 = 0;
-        let mut result = vec![version];
-        prost::Message::encode(self, &mut result)?;
-        Ok(result)
-    }
-
-    pub fn from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
-        prost::Message::decode(&bytes[1..])
-    }
-}
-
-impl GetMySbModelTopicId for BidAskSbModel {
-    fn get_topic_id() -> &'static str {
-        SEND_TOPIC_NAME
-    }
-}
-
-impl MySbMessageSerializer for BidAskSbModel {
-    fn serialize(
-        &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
-        let content = self.as_bytes();
-
-        return match content {
-            Ok(content) => Ok((content, headers)),
-            Err(err) => Err(format!("{err}")),
-        }
-    }
-}
-
-impl MySbMessageDeserializer for BidAskSbModel {
-    type Item = BidAskSbModel;
-    fn deserialize(
-        src: &[u8],
-        _headers: &Option<HashMap<String, String>>,
-    ) -> Result<Self::Item, SubscriberError> {
-        let result = BidAskSbModel::from_bytes(src);
-
-        return match result {
-            Ok(model) => Ok(model),
-            Err(err) => Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
-        }
-    }
 }

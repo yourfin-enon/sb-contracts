@@ -1,11 +1,7 @@
-use my_service_bus_abstractions::{
-    publisher::{MySbMessageSerializer},
-    GetMySbModelTopicId,
-};
-
-pub const SEND_TOPIC_NAME: &str = "send-system-message";
+service_sdk::macros::use_my_sb_entity_protobuf_model!();
 
 #[derive(Clone, PartialEq, ::prost::Message)]
+#[my_sb_entity_protobuf_model(topic_id = "send-system-message")]
 pub struct SendSystemMessageSb {
     #[prost(message, tag = "1")]
     pub message: ::core::option::Option<SystemMessageSb>,
@@ -25,36 +21,4 @@ pub struct SystemMessageSb {
     pub title: ::prost::alloc::string::String,
     #[prost(int64, tag = "5")]
     pub auto_send_ts: i64,
-}
-
-impl SendSystemMessageSb {
-    fn as_bytes(&self) -> Result<Vec<u8>, prost::EncodeError> {
-        let mut result = Vec::new();
-        prost::Message::encode(self, &mut result)?;
-        Ok(result)
-    }
-
-    fn _from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
-        prost::Message::decode(bytes)
-    }
-}
-
-impl GetMySbModelTopicId for SendSystemMessageSb {
-    fn get_topic_id() -> &'static str {
-        SEND_TOPIC_NAME
-    }
-}
-
-impl MySbMessageSerializer for SendSystemMessageSb {
-    fn serialize(
-        &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
-        let content = self.as_bytes();
-
-        match content {
-            Ok(content) => return Ok((content, headers)),
-            Err(err) => return Err(format!("{err}")),
-        }
-    }
 }

@@ -1,10 +1,8 @@
-use crate::shared::{from_bytes, into_bytes};
-use my_service_bus_abstractions::{publisher::MySbMessageSerializer, GetMySbModelTopicId};
 use serde::{Deserialize, Serialize};
-
-pub const SEND_TOPIC_NAME: &str = "verification-pending";
+service_sdk::macros::use_my_sb_entity_protobuf_model!();
 
 #[derive(Clone, PartialEq, ::prost::Message)]
+#[my_sb_entity_protobuf_model(topic_id = "verification-pending")]
 pub struct VerificationPendingSbModel {
     #[prost(string, tag = "1")]
     pub trader_id: ::prost::alloc::string::String,
@@ -26,24 +24,4 @@ pub struct WithdrawalVerificationAdditionalDataSbModel {
     pub asset_amount: f64,
     pub asset_symbol: String,
     pub blockchain_symbol: String,
-}
-
-impl GetMySbModelTopicId for VerificationPendingSbModel {
-    fn get_topic_id() -> &'static str {
-        SEND_TOPIC_NAME
-    }
-}
-
-impl MySbMessageSerializer for VerificationPendingSbModel {
-    fn serialize(
-        &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
-        let content = into_bytes(self);
-
-        match content {
-            Ok(content) => Ok((content, headers)),
-            Err(err) => Err(format!("{err}")),
-        }
-    }
 }

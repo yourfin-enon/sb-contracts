@@ -1,12 +1,7 @@
-use std::collections::HashMap;
-use my_service_bus_abstractions::{GetMySbModelTopicId, SubscriberError};
-use my_service_bus_abstractions::publisher::MySbMessageSerializer;
-use my_service_bus_abstractions::subscriber::MySbMessageDeserializer;
-use crate::shared::{from_bytes, into_bytes};
-
-pub const TOPIC_NAME: &str = "transaction-updated";
+service_sdk::macros::use_my_sb_entity_protobuf_model!();
 
 #[derive(Clone, PartialEq, ::prost::Message)]
+#[my_sb_entity_protobuf_model(topic_id = "transaction-updated")]
 pub struct TransactionUpdatedSbEvent {
     #[prost(int64, tag = "1")]
     pub date_micros: i64,
@@ -50,39 +45,4 @@ pub struct TransactionPrevStateSbModel {
     pub tx_id: String,
     #[prost(int32, tag = "3")]
     pub status: i32,
-}
-
-impl GetMySbModelTopicId for TransactionUpdatedSbEvent {
-    fn get_topic_id() -> &'static str {
-        TOPIC_NAME
-    }
-}
-
-impl MySbMessageSerializer for TransactionUpdatedSbEvent {
-    fn serialize(
-        &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
-        let content = into_bytes(self);
-
-        match content {
-            Ok(content) => Ok((content, headers)),
-            Err(err) => Err(format!("{err}")),
-        }
-    }
-}
-
-impl MySbMessageDeserializer for TransactionUpdatedSbEvent {
-    type Item = TransactionUpdatedSbEvent;
-    fn deserialize(
-        src: &[u8],
-        _headers: &Option<HashMap<String, String>>,
-    ) -> Result<Self::Item, SubscriberError> {
-        let result = from_bytes(src);
-
-        match result {
-            Ok(model) => Ok(model),
-            Err(err) => Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
-        }
-    }
 }

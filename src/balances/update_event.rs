@@ -1,13 +1,9 @@
-use my_service_bus_abstractions::{
-    publisher::MySbMessageSerializer, subscriber::MySbMessageDeserializer, GetMySbModelTopicId,
-    SubscriberError,
-};
+service_sdk::macros::use_my_sb_entity_protobuf_model!();
 use std::collections::HashMap;
 use crate::balances::shared::{BalanceSbModel, BalanceUpdateInfoSbModel, BalanceUpdateSbModel};
 
-pub const TOPIC_NAME: &str = "wallet-balances-updated";
-
 #[derive(Clone, PartialEq, ::prost::Message)]
+#[my_sb_entity_protobuf_model_with_version(topic_id = "wallet-balances-updated")]
 pub struct BalancesUpdatedSbEvent {
     #[prost(string, tag = "1")]
     pub operation_id: String,

@@ -1,13 +1,8 @@
-use my_service_bus_abstractions::{
-    publisher::MySbMessageSerializer, subscriber::MySbMessageDeserializer, GetMySbModelTopicId,
-    SubscriberError,
-};
-use std::collections::HashMap;
+service_sdk::macros::use_my_sb_entity_protobuf_model!();
 use crate::balances::shared::{BalanceSbModel, BalanceUpdateInfoSbModel, BalanceUpdateSbModel};
 
-pub const TOPIC_NAME: &str = "wallet-balances-update-failed";
-
 #[derive(Clone, PartialEq, ::prost::Message)]
+#[my_sb_entity_protobuf_model_with_version(topic_id = "wallet-balances-update-failed")]
 pub struct BalancesUpdateFailedSbEvent {
     #[prost(string, tag = "1")]
     pub operation_id: String,
@@ -23,52 +18,4 @@ pub struct BalancesUpdateFailedSbEvent {
     pub updates: ::prost::alloc::vec::Vec<BalanceUpdateSbModel>,
     #[prost(message, repeated, tag = "7")]
     pub update_infos: Vec<BalanceUpdateInfoSbModel>,
-}
-
-impl BalancesUpdateFailedSbEvent {
-    pub fn as_bytes(&self) -> Result<Vec<u8>, prost::EncodeError> {
-        let version: u8 = 0;
-        let mut result = vec![version];
-        prost::Message::encode(self, &mut result)?;
-        Ok(result)
-    }
-
-    pub fn from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
-        prost::Message::decode(&bytes[1..])
-    }
-}
-
-impl GetMySbModelTopicId for BalancesUpdateFailedSbEvent {
-    fn get_topic_id() -> &'static str {
-        TOPIC_NAME
-    }
-}
-
-impl MySbMessageSerializer for BalancesUpdateFailedSbEvent {
-    fn serialize(
-        &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
-        let content = self.as_bytes();
-
-        match content {
-            Ok(content) => return Ok((content, headers)),
-            Err(err) => return Err(format!("{err}")),
-        }
-    }
-}
-
-impl MySbMessageDeserializer for BalancesUpdateFailedSbEvent {
-    type Item = BalancesUpdateFailedSbEvent;
-    fn deserialize(
-        src: &[u8],
-        _headers: &Option<HashMap<String, String>>,
-    ) -> Result<Self::Item, SubscriberError> {
-        let result = BalancesUpdateFailedSbEvent::from_bytes(src);
-
-        match result {
-            Ok(model) => return Ok(model),
-            Err(err) => return Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
-        }
-    }
 }
