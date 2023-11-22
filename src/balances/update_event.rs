@@ -1,5 +1,4 @@
 service_sdk::macros::use_my_sb_entity_protobuf_model!();
-use std::collections::HashMap;
 use crate::balances::shared::{BalanceSbModel, BalanceUpdateInfoSbModel, BalanceUpdateSbModel};
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -31,40 +30,5 @@ impl BalancesUpdatedSbEvent {
 
     pub fn from_bytes(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
         prost::Message::decode(&bytes[1..])
-    }
-}
-
-impl GetMySbModelTopicId for BalancesUpdatedSbEvent {
-    fn get_topic_id() -> &'static str {
-        TOPIC_NAME
-    }
-}
-
-impl MySbMessageSerializer for BalancesUpdatedSbEvent {
-    fn serialize(
-        &self,
-        headers: Option<std::collections::HashMap<String, String>>,
-    ) -> Result<(Vec<u8>, Option<std::collections::HashMap<String, String>>), String> {
-        let content = self.as_bytes();
-
-        match content {
-            Ok(content) => return Ok((content, headers)),
-            Err(err) => return Err(format!("{err}")),
-        }
-    }
-}
-
-impl MySbMessageDeserializer for BalancesUpdatedSbEvent {
-    type Item = BalancesUpdatedSbEvent;
-    fn deserialize(
-        src: &[u8],
-        _headers: &Option<HashMap<String, String>>,
-    ) -> Result<Self::Item, SubscriberError> {
-        let result = BalancesUpdatedSbEvent::from_bytes(src);
-
-        match result {
-            Ok(model) => return Ok(model),
-            Err(err) => return Err(SubscriberError::CanNotDeserializeMessage(format!("{err}"))),
-        }
     }
 }

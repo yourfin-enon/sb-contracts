@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use service_sdk::my_service_bus::macros::my_sb_entity_protobuf_model_with_version;
 use super::order::OrderSbModel;
 service_sdk::macros::use_my_sb_entity_protobuf_model!();
 
