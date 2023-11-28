@@ -17,3 +17,23 @@ pub struct BidAskSbModel {
     #[prost(double, tag = "6")]
     pub ask_volume: f64,
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::prices::bid_ask::BidAskSbModel;
+
+    #[test]
+    fn ser_der() {
+        let bid_ask = BidAskSbModel {
+            id: "BTCUSDT".to_string(),
+            date_time: None,
+            bid: 1.1,
+            ask: 0.9,
+            bid_volume: 1.0,
+            ask_volume: 1.0,
+        };
+
+        let bytes = bid_ask.as_protobuf_bytes().unwrap();
+        let _bid_ask = BidAskSbModel::from_protobuf_bytes(&bytes);
+    }
+}
