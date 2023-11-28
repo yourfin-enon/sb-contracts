@@ -21,12 +21,17 @@ pub struct BidAskSbModel {
 #[cfg(test)]
 mod tests {
     use crate::prices::bid_ask::BidAskSbModel;
+    use crate::prices::bid_ask_date_time::BidAskDateTime;
 
     #[test]
     fn ser_der() {
         let bid_ask = BidAskSbModel {
             id: "BTCUSDT".to_string(),
-            date_time: None,
+            date_time: Some(BidAskDateTime {
+                value: 1,
+                scale: 0,
+                kind: 0,
+            }),
             bid: 1.1,
             ask: 0.9,
             bid_volume: 1.0,
