@@ -45,3 +45,49 @@ pub struct TransactionReceivedSbEvent {
     #[prost(oneof = "transaction_sb_event::AdditionalInfo", tags = "20")]
     pub additional_info: ::core::option::Option<transaction_sb_event::AdditionalInfo>,
 }
+
+#[cfg(test)]
+mod tests {
+    use service_sdk::rust_extensions::date_time::DateTimeAsMicroseconds;
+    use crate::transactions::shared::transaction_sb_event::{AdditionalInfo, TransactionCryptoBuyInfoSb};
+    use crate::transactions::transaction_received::TransactionReceivedSbEvent;
+
+    #[test]
+    fn ser_der() {
+        let model = TransactionReceivedSbEvent {
+            date_micros: DateTimeAsMicroseconds::now().unix_microseconds,
+            asset_symbol: "test_asset_symbol".to_string(),
+            tx_id: "test_tx".to_string(),
+            destination_address: "destination_address".to_string(),
+            source_address: None,
+            wallet_id: "wallet_id".to_string(),
+            transaction_type: 0,
+            asset_amount: 0.0,
+            trader_id: "trader_id".to_string(),
+            blockchain_symbol: "blockchain_symbol".to_string(),
+            payment_provider_fee: 0.0,
+            status: 0,
+            external_id: "external_id".to_string(),
+            payment_provider: 0,
+            memo: None,
+            internal_fee: None,
+            order_id: None,
+            ref_tx_ids: vec![],
+            provider_fee_details_json: None,
+            additional_info: Some(AdditionalInfo::CryptBuyInfo(TransactionCryptoBuyInfoSb {
+                payment_method: "payment_method".to_string(),
+                fail_reason: "payment_method".to_string(),
+                crypto_asset_amount: 1.0,
+                crypto_asset_symbol: "crypto_asset_symbol".to_string(),
+                fiat_asset_amount: 1.0,
+                fiat_asset_symbol: "fiat_asset_symbol".to_string(),
+                tap_fee_asset_amount: 0.1,
+                tap_fee_asset_symbol: "tap_fee_asset_symbol".to_string(),
+            })),
+        };
+        let bytes = model.as_protobuf_bytes().unwrap();
+        assert!(!bytes.is_empty());
+        let parsed = TransactionReceivedSbEvent::from_protobuf_bytes(&bytes).unwrap();
+        assert_eq!(parsed.date_micros, model.date_micros);
+    }
+}

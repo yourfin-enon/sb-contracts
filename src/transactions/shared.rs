@@ -48,7 +48,7 @@ pub mod transaction_sb_event {
 
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum AdditionalInfo {
-        #[prost(message, tag = "1")]
+        #[prost(message, tag = "20")]
         CryptBuyInfo(TransactionCryptoBuyInfoSb),
     }
 }
