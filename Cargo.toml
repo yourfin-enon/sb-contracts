@@ -1,6 +1,6 @@
 [package]
 name = "sb-contracts"
-version = "1.1.1"
+version = "1.2.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -15,6 +15,7 @@ transactions = []
 sessions = []
 personal-data = []
 trader = []
+exchange = []
 
 [dependencies]
 service-sdk = { tag = "0.2.5", git = "https://github.com/MyJetTools/service-sdk.git", features = [
