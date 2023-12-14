@@ -16,4 +16,4 @@ pub mod personal_data;
 #[cfg(feature="trader")]
 pub mod trader;
 #[cfg(feature="exchange")]
-mod exchange;
+pub mod exchange;
