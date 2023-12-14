@@ -7,8 +7,6 @@ pub struct ExchangeQuoteExecutedSbEvent {
     pub trader_id: String,
     #[prost(string, tag = "2")]
     pub wallet_id: String,
-    #[prost(string, tag = "3")]
-    pub balance_id: String,
     #[prost(string, tag = "4")]
     pub id: String,
     #[prost(int64, tag = "5")]
