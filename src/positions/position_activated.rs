@@ -4,7 +4,7 @@ service_sdk::macros::use_my_sb_entity_protobuf_model!();
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 #[my_sb_entity_protobuf_model_with_version(topic_id = "wallet-position-activated")]
-pub struct PositionActivedSbEvent {
+pub struct PositionActivatedSbEvent {
     #[prost(string, tag = "1")]
     pub id: String,
     #[prost(message, optional, tag = "2")]
@@ -24,5 +24,5 @@ pub struct PositionActivedSbEvent {
     #[prost(map = "string, double", tag = "9")]
     pub total_invest_assets: HashMap<String, f64>,
     #[prost(map = "string, double", tag = "10")]
-    pub invest_bonus_assets: HashMap<String, f64>,
+    pub bonus_invest_assets: HashMap<String, f64>,
 }

@@ -39,7 +39,7 @@ pub struct PositionClosedSbEvent {
     pub total_invest_amount: f64,
 
     #[prost(map = "string, double", tag = "12")]
-    pub invest_bonus_assets: HashMap<String, f64>,
+    pub bonus_invest_assets: HashMap<String, f64>,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, prost::Enumeration)]
