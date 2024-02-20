@@ -17,3 +17,5 @@ pub mod personal_data;
 pub mod trader;
 #[cfg(feature="exchange")]
 pub mod exchange;
+#[cfg(feature="kyc")]
+pub mod kyc;
