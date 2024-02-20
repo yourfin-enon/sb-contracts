@@ -14,6 +14,7 @@ pub struct KycUpdateReceivedSbModel {
 }
 
 
+#[derive(Copy, Clone, Debug)]
 pub enum KycStatusSb {
     New = 0,
     Pending = 1,
