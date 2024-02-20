@@ -9,5 +9,7 @@ pub struct KycUpdateReceivedSbModel {
     pub external_id: String,
     #[prost(int32, tag = "3")]
     pub status: i32,
+    #[prost(string, tag = "4")]
+    pub level_name: String,
 }
 
