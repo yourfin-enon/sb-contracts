@@ -19,5 +19,5 @@ pub enum KycStatusSb {
     Processing = 1,
     Approved = 2,
     Rejected = 3,
-    Declined = 4,
+    Retry = 4,
 }
