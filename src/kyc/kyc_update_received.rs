@@ -17,7 +17,7 @@ pub struct KycUpdateReceivedSbModel {
 pub enum KycStatusSb {
     New = 0,
     Processing = 1,
-    Declined = 2,
+    Approved = 2,
     Rejected = 3,
-    Approved = 4,
+    Declined = 4,
 }
