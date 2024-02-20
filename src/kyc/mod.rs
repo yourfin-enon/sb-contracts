@@ -1,2 +1,1 @@
-pub mod sumsub_update;
-mod kyc_update;
+pub mod kyc_update;
