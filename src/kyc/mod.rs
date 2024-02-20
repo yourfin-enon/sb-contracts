@@ -1,1 +1,1 @@
-pub mod kyc_update;
+pub mod kyc_update_received;
