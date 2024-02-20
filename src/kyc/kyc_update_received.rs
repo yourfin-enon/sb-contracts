@@ -13,3 +13,11 @@ pub struct KycUpdateReceivedSbModel {
     pub level_name: String,
 }
 
+
+pub enum KycStatusSb {
+    New = 0,
+    Processing = 1,
+    Declined = 2,
+    Rejected = 3,
+    Approved = 4,
+}
