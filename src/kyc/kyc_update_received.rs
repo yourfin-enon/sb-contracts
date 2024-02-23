@@ -16,9 +16,9 @@ pub struct KycUpdateReceivedSbModel {
 
 #[derive(Copy, Clone, Debug)]
 pub enum KycStatusSb {
-    New = 0,
-    Pending = 1,
-    Approved = 2,
-    Rejected = 3,
+    Unverified = 0,
+    InReview = 1,
+    Verified = 2,
+    Declined = 3,
     Retry = 4,
 }
