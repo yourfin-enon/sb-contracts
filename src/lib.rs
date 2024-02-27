@@ -19,3 +19,5 @@ pub mod trader;
 pub mod exchange;
 #[cfg(feature="kyc")]
 pub mod kyc;
+#[cfg(feature="emails")]
+pub mod emails;
