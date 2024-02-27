@@ -11,4 +11,6 @@ pub struct EmailEventSbModel {
     pub provider_name: String,
     #[prost(optional, string, tag = "4")]
     pub template_id: Option<String>,
+    #[prost(string, tag = "5")]
+    pub email: String,
 }
