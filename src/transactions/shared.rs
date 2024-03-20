@@ -22,6 +22,7 @@ pub enum TransactionStatusSb {
 pub enum PaymentProvider {
     CoinsPaid = 0,
     Unlimit = 1,
+    Monetix = 2,
 }
 
 /// Nested message and enum types in `TransactionReceivedSbEvent`.
