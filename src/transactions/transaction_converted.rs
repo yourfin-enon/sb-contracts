@@ -8,7 +8,7 @@ pub struct TransactionConvertedSbEvent {
     #[prost(string, tag = "2")]
     pub trader_id: String,
     #[prost(int64, tag = "3")]
-    pub create_date_millis: i64,
+    pub create_date_micros: i64,
     #[prost(string, tag = "4")]
     pub fiat_asset: String,
     #[prost(string, tag = "5")]
