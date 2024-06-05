@@ -44,6 +44,8 @@ pub struct TransactionReceivedSbEvent {
     pub provider_fee_details_json: Option<String>,
     #[prost(oneof = "transaction_sb_event::AdditionalInfo", tags = "20")]
     pub additional_info: ::core::option::Option<transaction_sb_event::AdditionalInfo>,
+    #[prost(string, optional, tag = "21")]
+    pub payment_method: Option<String>,
 }
 
 #[cfg(test)]
