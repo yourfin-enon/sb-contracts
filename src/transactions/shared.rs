@@ -6,6 +6,7 @@ pub enum TransactionTypeSb {
     Deposit = 0,
     Withdrawal = 1,
     CryptoBuy = 2,
+    CryptoSell = 3,
 }
 
 #[derive(Debug, Clone, IntoPrimitive, TryFromPrimitive)]
