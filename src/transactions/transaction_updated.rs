@@ -1,3 +1,4 @@
+use crate::transactions::shared::transaction_sb_event;
 service_sdk::macros::use_my_sb_entity_protobuf_model!();
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -35,6 +36,8 @@ pub struct TransactionUpdatedSbEvent {
     pub id: String,
     #[prost(message, optional, tag = "16")]
     pub prev_state: Option<TransactionPrevStateSbModel>,
+    #[prost(message, optional, tag = "17")]
+    pub convert: Option<TransactionConvertSbModel>
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -45,4 +48,16 @@ pub struct TransactionPrevStateSbModel {
     pub tx_id: String,
     #[prost(int32, tag = "3")]
     pub status: i32,
+}
+
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TransactionConvertSbModel {
+    #[prost(string, tag = "1")]
+    pub fiat_asset_symbol: String,
+    #[prost(string, tag = "2")]
+    pub crypto_asset_symbol: String,
+    #[prost(double, tag = "3")]
+    pub fiat_asset_amount: f64,
+    #[prost(double, tag = "4")]
+    pub crypto_asset_amount: f64,
 }
