@@ -37,7 +37,11 @@ pub struct TransactionUpdatedSbEvent {
     #[prost(message, optional, tag = "16")]
     pub prev_state: Option<TransactionPrevStateSbModel>,
     #[prost(message, optional, tag = "17")]
-    pub convert: Option<TransactionConvertSbModel>
+    pub convert: Option<TransactionConvertSbModel>,
+    #[prost(string, repeated, tag = "18")]
+    pub ref_tx_ids: Vec<String>,
+    #[prost(string, optional, tag = "19")]
+    pub order_id: Option<String>,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
