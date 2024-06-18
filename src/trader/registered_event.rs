@@ -5,4 +5,6 @@ service_sdk::macros::use_my_sb_entity_protobuf_model!();
 pub struct TraderRegisteredSbEvent {
     #[prost(string, tag = "1")]
     pub trader_id: String,
+    #[prost(string, tag = "2")]
+    pub fingerprint: Option<String>,
 }
